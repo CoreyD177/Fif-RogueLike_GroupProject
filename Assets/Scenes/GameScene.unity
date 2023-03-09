@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 878352419}
   - component: {fileID: 878352418}
   - component: {fileID: 878352417}
+  - component: {fileID: 878352420}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Untagged
@@ -576,13 +577,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9e41f489d97b04ebe05586ad8e5688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rollSpeed: 2
+  isLeft: 0
+  isRolling: 0
+  walkTowards: {fileID: 665570356}
   rollDuration: 0.5
   rollCooldown: 2
-  isRolling: 0
-  isLeft: 0
-  walkTowards: {fileID: 665570356}
 --- !u!212 &878352418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -651,6 +650,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &878352420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878352416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c999a9b3eac011c49b8b9e092f68d0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  defense: 1
+  damage: 1
+  crit: 1
+  critChance: 1
+  immunity: 0.1
+  moveSpeed: 1
+  rollSpeed: 2
+  hitBox: {fileID: 0}
+  isPlayer: 0
 --- !u!1 &938447274
 GameObject:
   m_ObjectHideFlags: 0

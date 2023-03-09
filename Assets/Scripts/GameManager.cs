@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine; //Connect to Unity Engine
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; //Enable changing of canvas UI elements
 
 public class GameManager : MonoBehaviour
@@ -24,15 +25,16 @@ public class GameManager : MonoBehaviour
     #region Setup
     private void Start()
     {
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
         //If our references are empty fill them from the scene
-        if (pauseMenu == null || endMenu == null)
+        if ((pauseMenu == null || endMenu == null) && SceneManager.GetActiveScene().buildIndex < 2)
         {
             pauseMenu = GameObject.Find("PauseMenu").transform.GetChild(0).gameObject;
             endMenu = GameObject.Find("EndMenu").transform.GetChild(0).gameObject;
         }
         //Set the current state to in game and run the function to change the options
         state = GameState.InGame;
-        ChangeState();        
+        if (SceneManager.GetActiveScene().buildIndex < 2) ChangeState();        
     }
     #endregion
     #region Functions

@@ -595,6 +595,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1231631702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231631704}
+  - component: {fileID: 1231631703}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1231631703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231631702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db87bd7be7633d249b58af18eb2a4e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1231631704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231631702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.91771, y: -1.7631081, z: 0.065460294}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1410997503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1135,6 +1179,7 @@ GameObject:
   - component: {fileID: 1857334233}
   - component: {fileID: 1857334236}
   - component: {fileID: 1857334235}
+  - component: {fileID: 1857334239}
   - component: {fileID: 1857334237}
   - component: {fileID: 1857334238}
   m_Layer: 0
@@ -1225,13 +1270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9e41f489d97b04ebe05586ad8e5688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rollSpeed: 15
+  isLeft: 0
+  isRolling: 0
+  walkTowards: {fileID: 1178333209}
   rollDuration: 0.25
   rollCooldown: 2
-  isRolling: 0
-  isLeft: 0
-  walkTowards: {fileID: 1178333209}
 --- !u!61 &1857334236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1299,6 +1342,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1857334239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857334232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c999a9b3eac011c49b8b9e092f68d0a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  defense: 1
+  damage: 1
+  crit: 1
+  critChance: 1
+  immunity: 0.1
+  moveSpeed: 1
+  rollSpeed: 2
+  hitBox: {fileID: 0}
+  isPlayer: 0
 --- !u!1 &2112783911
 GameObject:
   m_ObjectHideFlags: 0
