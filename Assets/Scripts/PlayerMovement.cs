@@ -94,6 +94,12 @@ public class PlayerMovement : MonoBehaviour
             rollDurationTimer = rollDuration; // Initiate rollDurationTimer countdown
             rollCooldownTimer = rollCooldown; // Initiate rollCooldownTimer countdown
         }
+        //Allow user to pause game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.state = GameManager.GameState.Paused;
+            GameManager.ChangeState();
+        }
         #endregion
     }
 
