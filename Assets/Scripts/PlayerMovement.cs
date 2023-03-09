@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Player Variables")]
-    [SerializeField] float moveSpeed = 1; // The speed at which the player moves
-    [SerializeField] float rollSpeed = 2; // The speed at which the player moves while rolling
-    [SerializeField] float rollDuration = 0.5f; // The duration a roll is active
-    [SerializeField] float rollCooldown = 2; // The cooldown needed before another roll
-    [SerializeField] bool isRolling; // Whether or not the player is currently rolling
-
     [Header("bools")]
     bool isGrounded; // Whether or not the player is currently grounded
     public bool isLeft; // Whether or not the player is facing left
+    [SerializeField] bool isRolling; // Whether or not the player is currently rolling
 
     [Header("Timers")]
     float rollCooldownTimer; // Timer for the roll cooldown
     float rollDurationTimer; // Timer for the roll duration
 
     [Header("Misc")]
+    CharacterStatistics stats;
     Rigidbody2D rb; // The player's Rigidbody2D component
     GameManager gameManager; // The GameManager instance
     [SerializeField] GameObject walkTowards; // A game object used to determine the player's movement direction
+    [SerializeField] float rollDuration = 0.5f; // The duration a roll is active
+    [SerializeField] float rollCooldown = 2; // The cooldown needed before another roll
 
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<CharacterStatistics>();
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
     }
 
@@ -102,13 +100,13 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         #region Left, Right, Up, Down
-        transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
+        transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
         #endregion
 
         #region Rolling
         // Check if the player is rolling and rollDurationTimer is less than 0
         if (isRolling && rollDurationTimer > 0)
-            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, rollSpeed * Time.deltaTime); // Move the player towards walkTowards using rollSpeed
+            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.rollSpeed * Time.deltaTime); // Move the player towards walkTowards using rollSpeed
         #endregion
     }
 

@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,17 +101,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_0
+      name: Player_IdleDown1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 432
-        width: 48
-        height: 48
+        x: 18
+        y: 437
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,13 +138,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_1
+      name: Player_IdleDown2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 432
-        width: 48
-        height: 48
+        x: 66
+        y: 437
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,13 +159,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_2
+      name: Player_IdleDown3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 432
-        width: 48
-        height: 48
+        x: 114
+        y: 437
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,13 +180,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_3
+      name: Player_IdleDown4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 432
-        width: 48
-        height: 48
+        x: 162
+        y: 437
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,13 +201,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_4
+      name: Player_IdleDown5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 432
-        width: 48
-        height: 48
+        x: 210
+        y: 437
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,13 +222,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_5
+      name: Player_IdleDown6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 432
-        width: 48
-        height: 48
+        x: 258
+        y: 437
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,13 +243,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_6
+      name: Player_IdleSide1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
-        width: 48
-        height: 48
+        x: 17
+        y: 389
+        width: 15
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,13 +264,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_7
+      name: Player_IdleSide2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 384
-        width: 48
-        height: 48
+        x: 65
+        y: 389
+        width: 15
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,13 +285,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_8
+      name: Player_IdleSide3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 384
-        width: 48
-        height: 48
+        x: 113
+        y: 389
+        width: 15
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,13 +306,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_9
+      name: Player_IdleSide4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 384
-        width: 48
-        height: 48
+        x: 161
+        y: 389
+        width: 15
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,13 +327,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_10
+      name: Player_IdleSide5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 384
-        width: 48
-        height: 48
+        x: 209
+        y: 389
+        width: 15
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,13 +348,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_11
+      name: Player_IdleSide6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 384
-        width: 48
-        height: 48
+        x: 257
+        y: 389
+        width: 15
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -357,13 +369,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_12
+      name: Player_IdleUp1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 336
-        width: 48
-        height: 48
+        x: 18
+        y: 341
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -378,13 +390,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_13
+      name: Player_IdleUp2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 336
-        width: 48
-        height: 48
+        x: 66
+        y: 341
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -399,13 +411,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_14
+      name: Player_IdleUp3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 336
-        width: 48
-        height: 48
+        x: 114
+        y: 341
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -420,13 +432,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_15
+      name: Player_IdleUp4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 336
-        width: 48
-        height: 48
+        x: 162
+        y: 341
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -441,13 +453,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_16
+      name: Player_IdleUp5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 336
-        width: 48
-        height: 48
+        x: 210
+        y: 341
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -462,13 +474,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_17
+      name: Player_IdleUp6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 336
-        width: 48
-        height: 48
+        x: 258
+        y: 341
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -483,13 +495,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_18
+      name: Player_MoveDown1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 288
-        width: 48
-        height: 48
+        x: 18
+        y: 293
+        width: 13
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -504,13 +516,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_19
+      name: Player_MoveDown2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 288
-        width: 48
-        height: 48
+        x: 66
+        y: 293
+        width: 13
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,13 +537,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_20
+      name: Player_MoveDown3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 288
-        width: 48
-        height: 48
+        x: 114
+        y: 293
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -546,13 +558,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_21
+      name: Player_MoveDown4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 288
-        width: 48
-        height: 48
+        x: 162
+        y: 293
+        width: 13
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -567,13 +579,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_22
+      name: Player_MoveDown5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 288
-        width: 48
-        height: 48
+        x: 210
+        y: 293
+        width: 13
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,13 +600,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_23
+      name: Player_MoveDown6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 288
-        width: 48
-        height: 48
+        x: 258
+        y: 293
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -609,13 +621,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_24
+      name: Player_MoveSide1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 240
-        width: 48
-        height: 48
+        x: 17
+        y: 245
+        width: 15
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -630,13 +642,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_25
+      name: Player_MoveSide2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 240
-        width: 48
-        height: 48
+        x: 65
+        y: 245
+        width: 15
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -651,13 +663,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_26
+      name: Player_MoveSide3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 240
-        width: 48
-        height: 48
+        x: 113
+        y: 245
+        width: 15
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -672,13 +684,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_27
+      name: Player_MoveSide4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 240
-        width: 48
-        height: 48
+        x: 161
+        y: 245
+        width: 15
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -693,13 +705,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_28
+      name: Player_MoveSide5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 240
-        width: 48
-        height: 48
+        x: 209
+        y: 245
+        width: 15
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -714,13 +726,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_29
+      name: Player_MoveSide6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 240
-        width: 48
-        height: 48
+        x: 257
+        y: 245
+        width: 15
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -735,13 +747,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_30
+      name: Player_MoveUp1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
-        width: 48
-        height: 48
+        x: 18
+        y: 197
+        width: 13
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,13 +768,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_31
+      name: Player_MoveUp2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 192
-        width: 48
-        height: 48
+        x: 66
+        y: 197
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -777,13 +789,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_32
+      name: Player_MoveUp3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
-        width: 48
-        height: 48
+        x: 114
+        y: 197
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -798,13 +810,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_33
+      name: Player_MoveUp4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 192
-        width: 48
-        height: 48
+        x: 162
+        y: 197
+        width: 13
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -819,13 +831,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_34
+      name: Player_MoveUp5
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
-        width: 48
-        height: 48
+        x: 210
+        y: 197
+        width: 13
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -840,13 +852,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_35
+      name: Player_MoveUp6
       rect:
         serializedVersion: 2
-        x: 240
-        y: 192
-        width: 48
-        height: 48
+        x: 258
+        y: 197
+        width: 13
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -861,13 +873,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_36
+      name: Player_AttackDown1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
-        width: 48
-        height: 48
+        x: 15
+        y: 149
+        width: 16
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -882,13 +894,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_37
+      name: Player_AttackDown2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 65
         y: 144
-        width: 48
-        height: 48
+        width: 20
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -903,13 +915,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_38
+      name: Player_AttackDown3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 144
-        width: 48
-        height: 48
+        x: 114
+        y: 148
+        width: 19
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -924,13 +936,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_39
+      name: Player_AttackDown4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
-        width: 48
-        height: 48
+        x: 162
+        y: 149
+        width: 13
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -945,13 +957,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_40
+      name: Player_AttackSide1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 48
-        height: 48
+        x: 19
+        y: 101
+        width: 16
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -966,13 +978,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_41
+      name: Player_AttackSide2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
-        width: 48
-        height: 48
+        x: 56
+        y: 99
+        width: 34
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -987,13 +999,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_42
+      name: Player_AttackSide3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 48
-        height: 48
+        x: 107
+        y: 101
+        width: 20
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1008,13 +1020,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_43
+      name: Player_AttackSide4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
-        width: 48
-        height: 48
+        x: 161
+        y: 101
+        width: 15
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1029,13 +1041,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_44
+      name: Player_AttackUp1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 48
-        height: 48
+        x: 18
+        y: 53
+        width: 17
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1050,13 +1062,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_45
+      name: Player_AttackUp2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
+        x: 59
+        y: 53
+        width: 22
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1071,13 +1083,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_46
+      name: Player_AttackUp3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
-        width: 48
-        height: 48
+        x: 108
+        y: 53
+        width: 19
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1092,13 +1104,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_47
+      name: Player_AttackUp4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
-        height: 48
+        x: 162
+        y: 53
+        width: 13
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1113,13 +1125,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_48
+      name: Player_Faint1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 48
+        x: 18
+        y: 5
+        width: 16
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1134,13 +1146,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_49
+      name: Player_Faint2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
+        x: 66
+        y: 5
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1155,13 +1167,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_50
+      name: Player_Faint3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
+        x: 113
+        y: 5
+        width: 21
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1186,57 +1198,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_50: 1764731605
-      player_15: -878154178
-      player_12: -1042442418
-      player_19: -65005959
-      player_26: 2110906298
-      player_41: -1748238030
-      player_25: -833658723
-      player_37: 1021550323
-      player_23: 1898616401
-      player_31: -799404240
-      player_0: 716681013
-      player_24: 866617876
-      player_36: -11577863
-      player_40: 1183050891
-      player_3: -1655042772
-      player_6: 448953504
-      player_2: 116828554
-      player_29: 1406377838
-      player_47: 424516451
-      player_34: -1455599278
-      player_17: -326615435
-      player_13: -122081895
-      player_44: -2013770109
-      player_28: -1859604503
-      player_11: 2054066054
-      player_27: -1365629602
-      player_1: -596713416
-      player_16: -800732713
-      player_8: 868272625
-      player_14: 1721482062
-      player_21: -1408012996
-      player_35: 1422182275
-      player_4: -1473336110
-      player_5: 1119252977
-      player_46: 857681768
-      player_38: 1784607505
-      player_33: -272471162
-      player_45: 619212447
-      player_9: 1203278984
-      player_30: -1954173682
-      player_39: 1043594747
-      player_18: -1226299489
-      player_48: -1767398855
-      player_10: -1856029154
-      player_22: 57137229
-      player_49: -1844209573
-      player_20: 1905364994
-      player_43: 22358678
-      player_32: 50656256
-      player_42: -526675222
-      player_7: -799197320
+      Player_MoveUp5: -1455599278
+      Player_MoveSide6: 1406377838
+      Player_Faint2: -1844209573
+      Player_MoveUp4: -272471162
+      Player_IdleDown6: 1119252977
+      Player_IdleUp2: -122081895
+      Player_MoveDown1: -1226299489
+      Player_MoveUp3: 50656256
+      Player_MoveDown4: -1408012996
+      player_0: -1166971882
+      Player_AttackSide3: -526675222
+      Player_MoveSide2: -833658723
+      Player_MoveUp2: -799404240
+      Player_IdleSide1: 448953504
+      Player_IdleUp6: -326615435
+      Player_IdleDown5: -1473336110
+      Player_IdleUp5: -800732713
+      Player_MoveUp6: 1422182275
+      Player_MoveDown3: 1905364994
+      Player_MoveSide4: -1365629602
+      Player_IdleUp3: 1721482062
+      Player_AttackSide1: 1183050891
+      Player_IdleUp4: -878154178
+      Player_AttackDown1: -11577863
+      Player_IdleDown2: -596713416
+      Player_IdleSide4: 1203278984
+      Player_IdleDown3: 116828554
+      Player_IdleSide5: -1856029154
+      Player_AttackDown4: 1043594747
+      Player_MoveUp1: -1954173682
+      Player_IdleSide2: -799197320
+      Player_IdleUp1: -1042442418
+      Player_AttackUp2: 619212447
+      Player_AttackSide4: 22358678
+      Player_MoveDown5: 57137229
+      Player_AttackDown2: 1021550323
+      Player_MoveDown6: 1898616401
+      Player_IdleDown4: -1655042772
+      Player_AttackDown3: 1784607505
+      Player_MoveDown2: -65005959
+      Player_AttackUp3: 857681768
+      Player_AttackUp1: -2013770109
+      Player_IdleSide3: 868272625
+      Player_Faint1: -1767398855
+      Player_AttackSide2: -1748238030
+      Player_IdleSide6: 2054066054
+      Player_MoveSide3: 2110906298
+      Player_MoveSide5: -1859604503
+      Player_IdleDown1: 716681013
+      Player_Faint3: 1764731605
+      Player_AttackUp4: 424516451
+      Player_MoveSide1: 866617876
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
