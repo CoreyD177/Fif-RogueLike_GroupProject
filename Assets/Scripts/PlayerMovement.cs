@@ -5,16 +5,33 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("bools")]
+    bool isMoving; // Whether or not the player is currently moving
     bool isGrounded; // Whether or not the player is currently grounded
     public bool isLeft; // Whether or not the player is facing left
-    [SerializeField] bool isRolling; // Whether or not the player is currently rolling
+    public bool isRolling; // Whether or not the player is currently rolling
 
     [Header("Timers")]
     float rollCooldownTimer; // Timer for the roll cooldown
     float rollDurationTimer; // Timer for the roll duration
 
+    [Header("Animations")]
+    const string PLAYER_ATTACKDOWN = "Player_AttackDown"; // Stores the "Player_AttackDown" animation
+    const string PLAYER_ATTACKSIDE = "Player_AttackSide"; // Stores the "Player_AttackSide" animation
+    const string PLAYER_ATTACKUP = "Player_AttackUp"; // Stores the "Player_AttackUp" animation
+    const string PLAYER_FAINT = "Player_Faint"; // Stores the "Player_Faint" animation
+    const string PLAYER_FAINTED = "Player_Fainted"; // Stores the "Player_Fainted" animation
+    const string PLAYER_IDLEDOWN = "Player_IdleDown"; // Stores the "Player_IdleDown" animation
+    const string PLAYER_IDLESIDE = "Player_IdleSide"; // Stores the "Player_IdleSide" animation
+    const string PLAYER_IDLEUP = "Player_IdleUp"; // Stores the "Player_IdleUp" animation
+    const string PLAYER_WALKDOWN = "Player_WalkDown"; // Stores the "Player_WalkDown" animation
+    const string PLAYER_WALKSIDE = "Player_WalkSide"; // Stores the "Player_WalkSide" animation
+    const string PLAYER_WALKUP = "Player_WalkUp"; // Stores the "Player_WalkUp" animation
+    string currentState; // A string containing the current animation state
+    string lastDirection; // A string containing the last direction the player was facing
+    Animator animator; // The player's Animator component
+
     [Header("Misc")]
-    CharacterStatistics stats;
+    CharacterStatistics stats; // The player's CharacterStatistics component
     Rigidbody2D rb; // The player's Rigidbody2D component
     GameManager gameManager; // The GameManager instance
     [SerializeField] GameObject walkTowards; // A game object used to determine the player's movement direction
@@ -24,8 +41,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stats = GetComponent<CharacterStatistics>();
+        stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
+        animator = GetComponent<Animator>(); // Get the Animator component
     }
 
     // Update is called once per frame
@@ -33,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Inputs(); // Check for input
         Timers(); // Update timers
+        Animations(); // Update animations
+
+        if(walkTowards.transform.localPosition != Vector3.zero)
+            stats.hitBox.transform.localPosition = walkTowards.transform.localPosition; // Always align player attack box infront of them
 
         #region isLeft
         // Flip the sprite horizontally if the player is facing left
@@ -50,14 +72,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Inputs()
     {
-        #region Left, Right, Up, Down
-        // Check for input to move left
-        if (Input.GetKey(KeyCode.A))
+        // If player health value is above 0, allow Inputs
+        if (stats.health > 0)
         {
-<<<<<<< Updated upstream
-            isLeft = true;
-            walkTowards.transform.localPosition = new Vector2(-1, walkTowards.transform.localPosition.y);
-=======
             #region Left, Right, Up, Down
             if (!stats.isAttacking)
             {
@@ -122,68 +139,20 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) && !stats.isAttacking)
                 {
                     stats.attackTimer = stats.attackDuration; // Set attack timer to indicate the player is attacking
-                    //animator.Play(PLAYER_ATTACKSIDE); // Play attacking animation
-                    StartCoroutine(AttackAnimation());
+                    StartCoroutine(AttackAnimation()); // Play attacking animation
                 }
             }
             #endregion
->>>>>>> Stashed changes
         }
-
-        // Check for input to move right
-        else if (Input.GetKey(KeyCode.D))
-        {
-            isLeft = false;
-            walkTowards.transform.localPosition = new Vector2(1, walkTowards.transform.localPosition.y);
-        }
-
-        // Reset walkToward localPosition x to 0
+        // Otherwise, disable Inputs
         else
-            walkTowards.transform.localPosition = new Vector2(0, walkTowards.transform.localPosition.y);
-
-        // Check for input to move up
-        if (Input.GetKey(KeyCode.W))
-        {
-            walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, 1);
-        }
-
-        // Check for input to move down
-        else if (Input.GetKey(KeyCode.S))
-        {
-            walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, -1);
-        }
-
-        // Reset walkToward localPosition y to 0
-        else
-            walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, 0);
-        #endregion
-
-        #region Rolling
-        // Check for input to initiate a roll and rollCooldownTimer is equal to or lower than 0
-        if (Input.GetKeyDown(KeyCode.LeftShift) && rollCooldownTimer <= 0)
-        {
-            isRolling = true; // Set isRolling to true
-            rollDurationTimer = rollDuration; // Initiate rollDurationTimer countdown
-            rollCooldownTimer = rollCooldown; // Initiate rollCooldownTimer countdown
-        }
-        //Allow user to pause game
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameManager.state = GameManager.GameState.Paused;
-            GameManager.ChangeState();
-        }
-        #endregion
+            walkTowards.transform.localPosition = Vector2.zero;
     }
-    IEnumerator AttackAnimation()
-    {
-        animator.Play(PLAYER_ATTACKSIDE);
-        yield return new WaitForSecondsRealtime(0.5f);
-        animator.Play(currentState);
-    }
+
     void Movement()
     {
         #region Left, Right, Up, Down
-        transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
+            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
         #endregion
 
         #region Rolling
@@ -206,5 +175,82 @@ public class PlayerMovement : MonoBehaviour
         // Check if rollDurationTimer has expired
         if (rollDurationTimer <= 0)
             isRolling = false; // Set isRolling to false
+    }
+
+    void Animations()
+    {
+        // If player health value is above 0, allow other animations
+        if (stats.health > 0)
+        {
+            #region Left, Right, Up, Down, Idle
+            // Check if walkTowards x position does not equal 0
+            if (walkTowards.transform.localPosition.x != 0)
+            {
+                ChangeAnimationState(PLAYER_WALKSIDE); // Play walking animation
+                lastDirection = "Side";
+            }
+
+            // Check if walkTowards y position is bellow 0
+            else if (walkTowards.transform.localPosition.y < 0)
+            {
+                ChangeAnimationState(PLAYER_WALKDOWN); // Play walking animation
+                lastDirection = "Down";
+            }
+
+            // Check if walkTowards y position is above 0
+            else if (walkTowards.transform.localPosition.y > 0)
+            {
+                ChangeAnimationState(PLAYER_WALKUP); // Play walking animation
+                lastDirection = "Up";
+            }
+
+            // Check if player is idle in the down direction
+            else
+                switch (lastDirection)
+                {
+                    case "Side":
+                        ChangeAnimationState(PLAYER_IDLESIDE);
+                        break;
+                    case "Down":
+                        ChangeAnimationState(PLAYER_IDLEDOWN);
+                        break;
+                    case "Up":
+                        ChangeAnimationState(PLAYER_IDLEUP);
+                        break;
+                    default:
+                        ChangeAnimationState(PLAYER_IDLESIDE);
+                        break;
+                }
+
+            #endregion
+        }
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        // Check if walkTowards x position does not equal 0
+        if (stats.hitBox.transform.localPosition.x != 0)
+            ChangeAnimationState(PLAYER_ATTACKSIDE); // Play attack animation
+
+        // Check if walkTowards y position is bellow 0
+        else if (stats.hitBox.transform.localPosition.y < 0)
+            ChangeAnimationState(PLAYER_ATTACKDOWN); // Play attack animation
+
+        // Check if walkTowards y position is above 0
+        else if (stats.hitBox.transform.localPosition.y > 0)
+            ChangeAnimationState(PLAYER_ATTACKUP); // Play attack animation
+        yield return new WaitForSecondsRealtime(stats.attackDuration);
+        animator.Play(currentState);
+    }
+
+    public void ChangeAnimationState(string newState)
+    {
+        // If the new state is the same as the current state, do nothing
+        if (currentState == newState)
+            return;
+
+        // Otherwise, play the new animation state and update the current state
+        animator.Play(newState);
+        currentState = newState;
     }
 }

@@ -87,4 +87,18 @@ public class GameManager : MonoBehaviour
         ChangeState();
     }
     #endregion
+
+    public void Test()
+    {
+        CharacterStatistics player = FindObjectOfType<PlayerMovement>().GetComponent<CharacterStatistics>();
+
+        player.maxHealth += Mathf.RoundToInt(Random.Range(1, 5));
+        player.defense += Mathf.RoundToInt(Random.Range(1, 5));
+        player.damage += Mathf.RoundToInt(Random.Range(1, 5));
+        player.crit += Mathf.RoundToInt(Random.Range(1, 2));
+        player.critChance += Mathf.RoundToInt(Random.Range(1, 5));
+        player.immunity += Random.Range(0.1f, 0.5f);
+        player.maxMoveSpeed += Mathf.RoundToInt(Random.Range(1, 5));
+        player.rollSpeed += Mathf.RoundToInt(Random.Range(1, 5));
+    }
 }
