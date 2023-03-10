@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     const string PLAYER_WALKSIDE = "Player_WalkSide"; // Stores the "Player_WalkSide" animation
     const string PLAYER_WALKUP = "Player_WalkUp"; // Stores the "Player_WalkUp" animation
     string currentState; // A string containing the current animation state
+    string lastDirection; // A string containing the last direction the player was facing
     Animator animator; // The player's Animator component
 
     [Header("Misc")]
@@ -51,7 +52,9 @@ public class PlayerMovement : MonoBehaviour
         Inputs(); // Check for input
         Timers(); // Update timers
         Animations(); // Update animations
-        stats.hitBox.transform.localPosition = walkTowards.transform.localPosition; // Always align player attack box infront of them
+
+        if(walkTowards.transform.localPosition != Vector3.zero)
+            stats.hitBox.transform.localPosition = walkTowards.transform.localPosition; // Always align player attack box infront of them
 
         #region isLeft
         // Flip the sprite horizontally if the player is facing left
@@ -136,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) && !stats.isAttacking)
                 {
                     stats.attackTimer = stats.attackDuration; // Set attack timer to indicate the player is attacking
-                    animator.Play(PLAYER_ATTACKSIDE); // Play attacking animation
+                    StartCoroutine(AttackAnimation()); // Play attacking animation
                 }
             }
             #endregion
@@ -182,21 +185,62 @@ public class PlayerMovement : MonoBehaviour
             #region Left, Right, Up, Down, Idle
             // Check if walkTowards x position does not equal 0
             if (walkTowards.transform.localPosition.x != 0)
+            {
                 ChangeAnimationState(PLAYER_WALKSIDE); // Play walking animation
+                lastDirection = "Side";
+            }
 
             // Check if walkTowards y position is bellow 0
             else if (walkTowards.transform.localPosition.y < 0)
+            {
                 ChangeAnimationState(PLAYER_WALKDOWN); // Play walking animation
+                lastDirection = "Down";
+            }
 
             // Check if walkTowards y position is above 0
             else if (walkTowards.transform.localPosition.y > 0)
+            {
                 ChangeAnimationState(PLAYER_WALKUP); // Play walking animation
+                lastDirection = "Up";
+            }
 
-            // Otherwise, initiate idle animation
+            // Check if player is idle in the down direction
             else
-                ChangeAnimationState(PLAYER_IDLEDOWN);
+                switch (lastDirection)
+                {
+                    case "Side":
+                        ChangeAnimationState(PLAYER_IDLESIDE);
+                        break;
+                    case "Down":
+                        ChangeAnimationState(PLAYER_IDLEDOWN);
+                        break;
+                    case "Up":
+                        ChangeAnimationState(PLAYER_IDLEUP);
+                        break;
+                    default:
+                        ChangeAnimationState(PLAYER_IDLESIDE);
+                        break;
+                }
+
             #endregion
         }
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        // Check if walkTowards x position does not equal 0
+        if (stats.hitBox.transform.localPosition.x != 0)
+            ChangeAnimationState(PLAYER_ATTACKSIDE); // Play attack animation
+
+        // Check if walkTowards y position is bellow 0
+        else if (stats.hitBox.transform.localPosition.y < 0)
+            ChangeAnimationState(PLAYER_ATTACKDOWN); // Play attack animation
+
+        // Check if walkTowards y position is above 0
+        else if (stats.hitBox.transform.localPosition.y > 0)
+            ChangeAnimationState(PLAYER_ATTACKUP); // Play attack animation
+        yield return new WaitForSecondsRealtime(stats.attackDuration);
+        animator.Play(currentState);
     }
 
     public void ChangeAnimationState(string newState)
