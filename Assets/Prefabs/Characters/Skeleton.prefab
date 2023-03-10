@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2931954259386281592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1669752, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6660496, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2931954259911667157
 GameObject:
@@ -68,8 +68,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2931954259911667162}
   - component: {fileID: 2931954259911667163}
+  - component: {fileID: 18714237752629904}
   - component: {fileID: 2931954259911667156}
   - component: {fileID: 2931954259911667161}
+  - component: {fileID: -8293298997566586997}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -145,6 +147,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &18714237752629904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2931954259911667157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12d9c573e41f5a428d2454866aa267a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  xMin: -18
+  xMax: 18
+  yMin: -8
+  yMax: 8
+  enemyType: Skeleton
+  ENEMY_WALK: 
+  ENEMY_ATTACK: 
+  ENEMY_FAINT: 
 --- !u!114 &2931954259911667156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,9 +191,10 @@ MonoBehaviour:
   maxMoveSpeed: 1
   moveSpeed: 0
   rollSpeed: 2
+  isFainted: 0
   hitBox: {fileID: 2931954259386281592}
   isPlayer: 0
-  attackDuration: 0.5
+  attackDuration: 0.9
   isAttacking: 0
   attackTimer: 0
 --- !u!61 &2931954259911667161
@@ -190,7 +214,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.125, y: 1.625}
+    oldSize: {x: 2.0625, y: 1.625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -199,3 +223,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56187546, y: 0.939684}
   m_EdgeRadius: 0
+--- !u!95 &-8293298997566586997
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2931954259911667157}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93c06f1df05a0a04cb396fd8ff125174, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
