@@ -54,8 +54,80 @@ public class PlayerMovement : MonoBehaviour
         // Check for input to move left
         if (Input.GetKey(KeyCode.A))
         {
+<<<<<<< Updated upstream
             isLeft = true;
             walkTowards.transform.localPosition = new Vector2(-1, walkTowards.transform.localPosition.y);
+=======
+            #region Left, Right, Up, Down
+            if (!stats.isAttacking)
+            {
+                // Check for input to move left
+                if (Input.GetKey(KeyCode.A))
+                {
+                    isLeft = true;
+                    walkTowards.transform.localPosition = new Vector2(-1, walkTowards.transform.localPosition.y);
+                }
+
+                // Check for input to move right
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    isLeft = false;
+                    walkTowards.transform.localPosition = new Vector2(1, walkTowards.transform.localPosition.y);
+                }
+
+                // Reset walkToward localPosition x to 0
+                else
+                    walkTowards.transform.localPosition = new Vector2(0, walkTowards.transform.localPosition.y);
+
+                // Check for input to move up
+                if (Input.GetKey(KeyCode.W))
+                {
+                    walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, 1);
+                }
+
+                // Check for input to move down
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, -1);
+                }
+
+                // Reset walkToward localPosition y to 0
+                else
+                    walkTowards.transform.localPosition = new Vector2(walkTowards.transform.localPosition.x, 0);
+            }
+            #endregion
+
+            #region Rolling
+            // Check for input to initiate a roll and rollCooldownTimer is equal to or lower than 0
+            if (Input.GetKeyDown(KeyCode.LeftShift) && rollCooldownTimer <= 0)
+            {
+                isRolling = true; // Set isRolling to true
+                rollDurationTimer = rollDuration; // Initiate rollDurationTimer countdown
+                rollCooldownTimer = rollCooldown; // Initiate rollCooldownTimer countdown
+                stats.attackTimer = 0;
+            }
+            //Allow user to pause game
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.state = GameManager.GameState.Paused;
+                GameManager.ChangeState();
+            }
+            #endregion
+
+            #region Attack
+            // Check if isPlayer is true
+            if (stats.isPlayer)
+            {
+                // If input is pressed and player is not already attacking
+                if (Input.GetKeyDown(KeyCode.Space) && !stats.isAttacking)
+                {
+                    stats.attackTimer = stats.attackDuration; // Set attack timer to indicate the player is attacking
+                    //animator.Play(PLAYER_ATTACKSIDE); // Play attacking animation
+                    StartCoroutine(AttackAnimation());
+                }
+            }
+            #endregion
+>>>>>>> Stashed changes
         }
 
         // Check for input to move right
@@ -102,7 +174,12 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
     }
-
+    IEnumerator AttackAnimation()
+    {
+        animator.Play(PLAYER_ATTACKSIDE);
+        yield return new WaitForSecondsRealtime(0.5f);
+        animator.Play(currentState);
+    }
     void Movement()
     {
         #region Left, Right, Up, Down
