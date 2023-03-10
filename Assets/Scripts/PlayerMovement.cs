@@ -31,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
     Animator animator; // The player's Animator component
 
     [Header("Misc")]
+    //Set a dash multiplier so we can speed through paths
+    int dash = 1;
+    //List of rooms so we can check if one exists at that location
+    public List<GameObject> roomList = new List<GameObject>();
+    //Material for the background object parented to the camera
+    public Renderer splashMaterial;
     CharacterStatistics stats; // The player's CharacterStatistics component
     Rigidbody2D rb; // The player's Rigidbody2D component
     GameManager gameManager; // The GameManager instance
@@ -44,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
+        roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+        splashMaterial = Camera.main.transform.GetChild(0).GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -63,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().flipX = false;
         #endregion
+        Vector4 offset = splashMaterial.material.GetVector("_Offset");
+        offset.x += Input.GetAxis("Horizontal") * (stats.moveSpeed * dash / 5f) * Time.deltaTime;
+        offset.y += Input.GetAxis("Vertical") * (stats.moveSpeed * dash / 5f) * Time.deltaTime;
+        splashMaterial.material.SetVector("_Offset", offset); ;
     }
 
     private void FixedUpdate()
@@ -152,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         #region Left, Right, Up, Down
-            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
+            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * dash * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
         #endregion
 
         #region Rolling
@@ -160,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         if (isRolling && rollDurationTimer > 0)
             transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.rollSpeed * Time.deltaTime); // Move the player towards walkTowards using rollSpeed
         #endregion
+        
     }
 
     void Timers()
@@ -252,5 +265,65 @@ public class PlayerMovement : MonoBehaviour
         // Otherwise, play the new animation state and update the current state
         animator.Play(newState);
         currentState = newState;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //If we enter the camera triggers move the camera the desired amount based of the amount given by the name of the object we triggered, making sure to use the right axis for the right part of room
+        if (collision.transform.CompareTag("CamTrigger"))
+        {
+            //X axis triggers have 39 or -39 for a name
+            if (collision.transform.name == "-39" || collision.transform.name == "39") Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);  
+            //y axis
+            else Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
+        }
+        //else if we enter a room trigger
+        else if (collision.transform.CompareTag("RoomTrigger"))
+        {
+            //Set a bool to determine if we have a room already to false
+            bool matchFound = false;
+            //If collided trigger has 39 or -39 for a name we are using x axis
+            if (collision.transform.name == "-39" || collision.transform.name == "39")
+            {
+                //move the camera to the location of the next room
+                Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);
+                //Check the roomList for any current rooms at that location and set bool to true if one exists
+                foreach (GameObject room in roomList)
+                {
+                    if (room.transform.position == Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f)) matchFound = true;
+                }
+                //If no match found instantiate a new room using name of triggered object as amount to add to cameras X position to get location of new room
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
+            }
+            //Else we are using y axis
+            else 
+            {
+                //Move the camera to the location of new room
+                Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
+                //Check the roomlist for any existing rooms at that location and set bool to true if one exists
+                foreach (GameObject room in roomList)
+                {
+                    if (room.transform.position == Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f)) matchFound = true;
+                }
+                //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //if we exit camera trigger disable the camera triggers for that room and enable the room triggers. Set dash to 1 as we are in a room
+        if (collision.transform.CompareTag("CamTrigger"))
+        {
+            collision.transform.parent.parent.GetChild(1).gameObject.SetActive(true);
+            collision.transform.parent.gameObject.SetActive(false);
+            dash = 1;
+        }
+        //Else if we exit a room trigger disable the room triggers and enable the camera triggers. Set dash to 3 so we zoom through path between rooms.
+        else if (collision.transform.CompareTag("RoomTrigger"))
+        {
+            collision.transform.parent.parent.GetChild(0).gameObject.SetActive(true);
+            collision.transform.parent.gameObject.SetActive(false);
+            dash = 3;
+        }
     }
 }
