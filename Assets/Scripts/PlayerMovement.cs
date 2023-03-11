@@ -31,12 +31,10 @@ public class PlayerMovement : MonoBehaviour
     Animator animator; // The player's Animator component
 
     [Header("Misc")]
-    //Set a dash multiplier so we can speed through paths
-    int dash = 1;
+    //Amount of rooms we have in project.
+    public int roomCount = 1;
     //List of rooms so we can check if one exists at that location
     public List<GameObject> roomList = new List<GameObject>();
-    //Material for the background object parented to the camera
-    public Renderer splashMaterial;
     CharacterStatistics stats; // The player's CharacterStatistics component
     Rigidbody2D rb; // The player's Rigidbody2D component
     GameManager gameManager; // The GameManager instance
@@ -51,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
         roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), new Vector3(0f, 0f, 0f), Quaternion.identity));
-        splashMaterial = Camera.main.transform.GetChild(0).GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -71,10 +68,6 @@ public class PlayerMovement : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().flipX = false;
         #endregion
-        Vector4 offset = splashMaterial.material.GetVector("_Offset");
-        offset.x += Input.GetAxis("Horizontal") * (stats.moveSpeed * dash / 5f) * Time.deltaTime;
-        offset.y += Input.GetAxis("Vertical") * (stats.moveSpeed * dash / 5f) * Time.deltaTime;
-        splashMaterial.material.SetVector("_Offset", offset); ;
     }
 
     private void FixedUpdate()
@@ -164,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         #region Left, Right, Up, Down
-            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * dash * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
+            transform.position = Vector3.MoveTowards(transform.position, walkTowards.transform.position, stats.moveSpeed * Time.deltaTime); // Move the player towards walkTowards using moveSpeed
         #endregion
 
         #region Rolling
@@ -292,7 +285,7 @@ public class PlayerMovement : MonoBehaviour
                     if (room.transform.position == Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f)) matchFound = true;
                 }
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras X position to get location of new room
-                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, roomCount)), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
             }
             //Else we are using y axis
             else 
@@ -305,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
                     if (room.transform.position == Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f)) matchFound = true;
                 }
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
-                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, roomCount)), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
             }
         }
     }
@@ -316,14 +309,12 @@ public class PlayerMovement : MonoBehaviour
         {
             collision.transform.parent.parent.GetChild(1).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);
-            dash = 1;
         }
         //Else if we exit a room trigger disable the room triggers and enable the camera triggers. Set dash to 3 so we zoom through path between rooms.
         else if (collision.transform.CompareTag("RoomTrigger"))
         {
             collision.transform.parent.parent.GetChild(0).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);
-            dash = 3;
         }
     }
 }
