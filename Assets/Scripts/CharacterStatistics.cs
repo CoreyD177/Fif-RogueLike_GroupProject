@@ -18,6 +18,7 @@ public class CharacterStatistics : MonoBehaviour
     public float rollSpeed = 2; // The speed/distance of the character's dodge roll
 
     [Header("Misc")]
+    public bool isFainted; // A check for if the character is fainted
     public GameObject hitBox; // A reference to the character's hitbox game object
     PlayerMovement playerMovement; // A reference to the character's PlayerMovement component
     public bool isPlayer; // A boolean to check if the character is a player or an enemy
@@ -43,19 +44,29 @@ public class CharacterStatistics : MonoBehaviour
         if (health > maxHealth)
             health = maxHealth;
 
-        // If the player's health is less than 1, play the "Player_Faint" animation
-        if (health < 1 && isPlayer)
-            playerMovement.ChangeAnimationState("Player_Faint");
+        // If the character's health is less than 1, set isFainted to true
+        if (health < 1)
+            isFainted = true;
     }
 
     void Attack()
     {
         // If attackTimer is greater than 0 and the game object is not rolling, set the move speed to 0, set isAttacking to true, and activate the hit box
-        if (attackTimer > 0 && !GetComponent<PlayerMovement>().isRolling)
+        if (attackTimer > 0)
         {
-            moveSpeed = 0;
-            isAttacking = true;
-            hitBox.SetActive(true);
+            if(isPlayer)
+            {
+                if(!GetComponent<PlayerMovement>().isRolling)
+                moveSpeed = 0;
+                isAttacking = true;
+                hitBox.SetActive(true);
+            }
+            else
+            {
+                moveSpeed = 0;
+                isAttacking = true;
+                hitBox.SetActive(true);
+            }
         }
         // Otherwise, set the move speed to the maximum move speed, set isAttacking to false, and deactivate the hit box
         else
