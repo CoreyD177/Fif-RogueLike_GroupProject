@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
-        roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), new Vector3(0f, 0f, 0f), Quaternion.identity));
     }
 
     // Update is called once per frame
