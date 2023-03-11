@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
         #endregion
 
         #region playerFaints
-        if (target.GetComponent<CharacterStatistics>().isFainted)
+        if (target != null && target.GetComponent<CharacterStatistics>().isFainted)
         {
             target = null;
             ChangeAnimationState(ENEMY_IDLE);
@@ -97,20 +97,26 @@ public class Enemy : MonoBehaviour
 
     void Movement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, stats.moveSpeed * Time.deltaTime);
+        if(target != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, stats.moveSpeed * Time.deltaTime);
 
-        if (target.transform.position.x < transform.position.x && !stats.isAttacking)
-            isLeft = true;
-        else if(target.transform.position.x > transform.position.x && !stats.isAttacking)
-            isLeft = false;
+            if (target.transform.position.x < transform.position.x && !stats.isAttacking)
+                isLeft = true;
+            else if(target.transform.position.x > transform.position.x && !stats.isAttacking)
+                isLeft = false;
+        }
     }
 
     public void Attack()
     {
-        if(Vector3.Distance(transform.position, target.transform.position) <= attackRange && !stats.isAttacking)
+        if(target != null)
         {
-            stats.attackTimer = stats.attackDuration;
-            StartCoroutine(AttackAnimation());
+            if(Vector3.Distance(transform.position, target.transform.position) <= attackRange && !stats.isAttacking && !stats.isFainted)
+            {
+                stats.attackTimer = stats.attackDuration;
+                StartCoroutine(AttackAnimation());
+            }
         }
     }
 

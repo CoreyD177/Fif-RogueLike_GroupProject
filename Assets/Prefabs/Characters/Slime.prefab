@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2931954259386281598}
   - component: {fileID: 2931954259386281599}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,8 @@ GameObject:
   - component: {fileID: 2931954259911667156}
   - component: {fileID: 2931954259911667161}
   - component: {fileID: 3495122496568103134}
-  m_Layer: 0
+  - component: {fileID: -824198295501764739}
+  m_Layer: 3
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -160,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  attackRange: 1
   xMin: -18
   xMax: 18
   yMin: -8
@@ -168,6 +170,7 @@ MonoBehaviour:
   ENEMY_WALK: 
   ENEMY_ATTACK: 
   ENEMY_FAINT: 
+  ENEMY_IDLE: 
 --- !u!114 &2931954259911667156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,3 +246,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!50 &-824198295501764739
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2931954259911667157}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

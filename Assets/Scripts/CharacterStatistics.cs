@@ -148,6 +148,7 @@ public class CharacterStatistics : MonoBehaviour
         #region !isPlayer
         if (!isPlayer && collision.gameObject.tag == "Player")
         {
+            Debug.Log("hit");
             int atkDmg = damage; // Initial attack damage value
             atkDmg -= enemyStats.defense; // Decrease attack damage value by the player's defense value
             if (atkDmg < 1) // If the damage value is lower than 1
