@@ -18,7 +18,7 @@ public class StatsDisplay : MonoBehaviour
     public Text _displayImmunity; // The duration of the character's invincibility frames after being hit       
     public Text moveSpeed; // The character's current movement speed
     public Text rollSpeed; // The speed/distance of the character's dodge roll
-
+    public Image playerSprite;
 
     private void Start()
     {
@@ -37,6 +37,8 @@ public class StatsDisplay : MonoBehaviour
         _displayImmunity.text = "Immunity: " + stats.immunity;
         moveSpeed.text = "Move Speed: " +stats.moveSpeed;
         rollSpeed.text = "Roll Speed: " + stats.rollSpeed;
+        playerSprite.sprite = stats.characterSprite;
+        
     }
 
     #region Testing
