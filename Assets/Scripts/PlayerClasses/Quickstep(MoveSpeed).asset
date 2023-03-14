@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Quickstep(MoveSpeed)
   m_EditorClassIdentifier: 
   playerClass: Quickstep
-  points: 0
-  health: 15
+  damage: 1
   maxHealth: 15
   defense: 1
-  damage: 1
   crit: 2
   critChance: 2
   immunity: 0.1
-  maxMoveSpeed: 7
   moveSpeed: 7
   rollSpeed: 9
+  characterSprite: {fileID: 21300000, guid: d13c05ae9110e9742b9a7f75ab250c1f, type: 3}

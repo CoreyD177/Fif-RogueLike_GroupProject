@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Stat//The types of Stats a unit may have
-{
-    test,
-    test2
-}
+//public enum Stat//The types of Stats a unit may have
+//{
+//    test,
+//    test2
+//}
 
 [CreateAssetMenu(menuName = "Unit Stats")]
 public class Stats : ScriptableObject
@@ -25,5 +25,6 @@ public class Stats : ScriptableObject
   //  public float maxMoveSpeed = 1; // The character's maximum movement speed
     public float moveSpeed; // The character's current movement speed
     public float rollSpeed = 2; // The speed/distance of the character's dodge roll
-  
+    public Sprite characterSprite;
+    
 }

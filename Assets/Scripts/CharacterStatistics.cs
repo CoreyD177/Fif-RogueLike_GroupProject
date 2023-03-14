@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class CharacterStatistics : MonoBehaviour
 {
+    #region Player Stats
     [Header("Stats")]
     public int points = 0; // The amount of points the player has
-    public int health = 1; // The character's current health
-    public int maxHealth = 1; // The character's maximum health
-    public int defense = 1; // The character's defense against enemy attacks
-    public int damage = 1; // The character's base damage
-    public int crit = 2; // The character's critical hit damage multiplier
-    public float critChance = 1; // The character's chance to land a critical hit
-    public float immunity = 0.1f; // The duration of the character's invincibility frames after being hit
-    public float maxMoveSpeed = 1; // The character's maximum movement speed
+    public int health = 0; // The character's current health
+    public int maxHealth = 0; // The character's maximum health
+    public int defense = 0; // The character's defense against enemy attacks
+    public int damage = 0; // The character's base damage
+    public int crit = 0; // The character's critical hit damage multiplier
+    public float critChance = 0; // The character's chance to land a critical hit
+    public float immunity = 0; // The duration of the character's invincibility frames after being hit
+    public float maxMoveSpeed = 0; // The character's maximum movement speed
     public float moveSpeed; // The character's current movement speed
-    public float rollSpeed = 2; // The speed/distance of the character's dodge roll
+    public float rollSpeed = 0; // The speed/distance of the character's dodge roll
+    public string playerClassName;
+
+    private int playerClassNumber;
+    [SerializeField] public Stats stats;
+   
+    [SerializeField] private StatsDisplay statSelect;
+    private bool firstPlay = true;
+    #endregion
+
 
     [Header("Misc")]
     public bool isFainted; // A check for if the character is fainted
@@ -31,6 +41,7 @@ public class CharacterStatistics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         playerMovement = GetComponent<PlayerMovement>(); // Assign a reference to the PlayerMovement component
     }
 
@@ -54,10 +65,10 @@ public class CharacterStatistics : MonoBehaviour
         // If attackTimer is greater than 0 and the game object is not rolling, set the move speed to 0, set isAttacking to true, and activate the hit box
         if (attackTimer > 0)
         {
-            if(isPlayer)
+            if (isPlayer)
             {
-                if(!GetComponent<PlayerMovement>().isRolling)
-                moveSpeed = 0;
+                if (!GetComponent<PlayerMovement>().isRolling)
+                    moveSpeed = 0;
                 isAttacking = true;
                 hitBox.SetActive(true);
             }
@@ -79,7 +90,7 @@ public class CharacterStatistics : MonoBehaviour
 
     public void Upgrade(string stat)
     {
-        if(points > 0) // Check if the player has upgrade points to spend
+        if (points > 0) // Check if the player has upgrade points to spend
         {
             switch (stat) // Switch statement to determine which stat to upgrade
             {
@@ -156,5 +167,27 @@ public class CharacterStatistics : MonoBehaviour
             enemyStats.health -= atkDmg; // Decrease player's health value by the final damage value
         }
         #endregion
+    }
+
+    public void FirstStart()
+    {
+        if (firstPlay)
+        {
+            stats = statSelect.stats;
+            playerClassName = statSelect._displayPlayerClass.text;
+            damage = stats.damage;
+            maxHealth = stats.maxHealth;
+            health = maxHealth;
+            defense = stats.defense;
+            crit = stats.crit;
+            critChance = stats.critChance;
+            immunity = stats.immunity;
+            maxMoveSpeed = stats.moveSpeed;
+            moveSpeed = stats.moveSpeed;
+            rollSpeed = stats.rollSpeed;
+            firstPlay = false;
+
+        }
+       //Do something else?
     }
 }

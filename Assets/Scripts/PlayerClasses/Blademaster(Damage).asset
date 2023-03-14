@@ -21,3 +21,4 @@ MonoBehaviour:
   immunity: 0.1
   moveSpeed: 4
   rollSpeed: 5
+  characterSprite: {fileID: 21300000, guid: ab2037a5c9f495147bf509bddda1ba05, type: 3}

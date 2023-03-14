@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StatsDisplay : MonoBehaviour
 {
-    [SerializeField] private Stats stats;
+    [SerializeField] public Stats stats;
     [SerializeField] private Stats[] playerClasses;
 
     [Header("Stats")]
@@ -18,8 +18,11 @@ public class StatsDisplay : MonoBehaviour
     public Text _displayImmunity; // The duration of the character's invincibility frames after being hit       
     public Text moveSpeed; // The character's current movement speed
     public Text rollSpeed; // The speed/distance of the character's dodge roll
+    public Image playerSprite;
+    public int playerClassSelected;
 
-
+    public Image playerHUDSprite;
+    public Text playerHUDHealth;
     private void Start()
     {
         Debug.Log(stats.playerClass);
@@ -28,19 +31,27 @@ public class StatsDisplay : MonoBehaviour
     public void SelectedClassInfo(int i) //Which playerclass it is.
     {
         stats = playerClasses[i];
-        _displayPlayerClass.text = "Class: " +stats.playerClass;
+        _displayPlayerClass.text = "Class: " + stats.playerClass;
         _displayDamage.text = "Damage: " + stats.damage;
         _displayMaxHealth.text = "Max Health: " + stats.maxHealth;
         _displayDefense.text = "Defense: " + stats.defense;
         _displayCrit.text = "Crit Damage: " + stats.crit;
         _displayCritChance.text = "Crit Chance: " + stats.critChance;
         _displayImmunity.text = "Immunity: " + stats.immunity;
-        moveSpeed.text = "Move Speed: " +stats.moveSpeed;
+        moveSpeed.text = "Move Speed: " + stats.moveSpeed;
         rollSpeed.text = "Roll Speed: " + stats.rollSpeed;
+        playerSprite.sprite = stats.characterSprite;
+        playerClassSelected = i;
+        playerHUDSprite.sprite = playerSprite.sprite;
+        playerHUDHealth.text = "HP " + stats.maxHealth + "/" + stats.maxHealth;
     }
 
+    
+    
+
+
     #region Testing
-  public void RandomSelection()
+    public void RandomSelection()
     {
         int v = Random.Range(0, playerClasses.Length);
         SelectedClassInfo(v);

@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Maverick
   m_EditorClassIdentifier: 
   playerClass: Maverick
-  points: 0
-  health: 12
+  damage: 2
   maxHealth: 12
   defense: 1
-  damage: 2
   crit: 2
   critChance: 2
   immunity: 0.2
-  maxMoveSpeed: 5
   moveSpeed: 5
   rollSpeed: 12
+  characterSprite: {fileID: 21300000, guid: 3db6d788bbcff1547a44e7c0a29322a6, type: 3}
