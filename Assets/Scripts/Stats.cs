@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Stat//The types of Stats a unit may have
-{
-    test,
-    test2
-}
+//public enum Stat//The types of Stats a unit may have
+//{
+//    test,
+//    test2
+//}
 
 [CreateAssetMenu(menuName = "Unit Stats")]
 public class Stats : ScriptableObject
