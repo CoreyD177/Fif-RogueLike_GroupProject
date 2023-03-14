@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Misc")]
     //Amount of rooms we have in project.
-    public int roomCount = 1;
     //List of rooms so we can check if one exists at that location
     public List<GameObject> roomList = new List<GameObject>();
     CharacterStatistics stats; // The player's CharacterStatistics component
@@ -48,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 1)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
     }
 
     // Update is called once per frame
@@ -286,8 +285,9 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (room.transform.position == Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f)) matchFound = true;
                 }
+                string roomNumber = "Rooms/" + Random.Range(0, 6).ToString();
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras X position to get location of new room
-                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, roomCount)), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
             }
             //Else we are using y axis
             else 
@@ -299,8 +299,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (room.transform.position == Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f)) matchFound = true;
                 }
+                string roomNumber = "Rooms/" + Random.Range(0, 6).ToString();
+                Debug.Log(roomNumber);
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
-                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, roomCount)), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
             }
         }
     }
