@@ -137,4 +137,19 @@ public class Enemy : MonoBehaviour
         animator.Play(newState);
         currentState = newState;
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "REnemyVoid")
+            transform.position = new Vector2(transform.position.x + 1, transform.position.y);
+
+        if (collision.gameObject.tag == "LEnemyVoid")
+            transform.position = new Vector2(transform.position.x - 1, transform.position.y);
+
+        if (collision.gameObject.tag == "UEnemyVoid")
+            transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+
+        if (collision.gameObject.tag == "DEnemyVoid")
+            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+    }
 }

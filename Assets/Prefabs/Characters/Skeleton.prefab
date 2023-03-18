@@ -134,8 +134,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 292972391
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1859894212, guid: d239bfa15acc33048adcd9531c596d0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -162,10 +162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   attackRange: 1
-  xMin: -18
-  xMax: 18
-  yMin: -8
-  yMax: 8
+  xMin: -14.5
+  xMax: 14.5
+  yMin: -7
+  yMax: 7
   enemyType: Skeleton
   ENEMY_WALK: 
   ENEMY_ATTACK: 
@@ -194,6 +194,9 @@ MonoBehaviour:
   maxMoveSpeed: 1
   moveSpeed: 0
   rollSpeed: 2
+  playerClassName: 
+  stats: {fileID: 0}
+  statSelect: {fileID: 0}
   isFainted: 0
   hitBox: {fileID: 2931954259386281592}
   isPlayer: 0
@@ -266,4 +269,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4

@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - CamTrigger
   - RoomTrigger
+  - UEnemyVoid
+  - DEnemyVoid
+  - LEnemyVoid
+  - REnemyVoid
   layers:
   - Default
   - TransparentFX

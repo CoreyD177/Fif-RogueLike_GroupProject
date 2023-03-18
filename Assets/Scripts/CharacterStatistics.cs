@@ -138,6 +138,13 @@ public class CharacterStatistics : MonoBehaviour
         #endregion
     }
 
+    IEnumerator SlowMotion()
+    {
+        Time.timeScale = 0.25f;
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterStatistics enemyStats = collision.gameObject.GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component from the collided game object
@@ -159,12 +166,19 @@ public class CharacterStatistics : MonoBehaviour
         #region !isPlayer
         if (!isPlayer && collision.gameObject.tag == "Player")
         {
-            Debug.Log("hit");
+            string temp = "hit";
             int atkDmg = damage; // Initial attack damage value
             atkDmg -= enemyStats.defense; // Decrease attack damage value by the player's defense value
             if (atkDmg < 1) // If the damage value is lower than 1
                 atkDmg = 1; // Set damage to 1
+            if (collision.gameObject.GetComponent<PlayerMovement>().isRolling)
+            {
+                atkDmg = 0;
+                temp = "miss";
+            }
             enemyStats.health -= atkDmg; // Decrease player's health value by the final damage value
+            StartCoroutine(SlowMotion());
+            Debug.Log(temp);
         }
         #endregion
     }
