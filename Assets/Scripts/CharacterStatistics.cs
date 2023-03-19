@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStatistics : MonoBehaviour
 {
@@ -21,7 +23,7 @@ public class CharacterStatistics : MonoBehaviour
 
     private int playerClassNumber;
     [SerializeField] public Stats stats;
-   
+    
     [SerializeField] private StatsDisplay statSelect;
     private bool firstPlay = true;
     #endregion
@@ -34,6 +36,9 @@ public class CharacterStatistics : MonoBehaviour
     public bool isPlayer; // A boolean to check if the character is a player or an enemy
     public float attackDuration = 0.5f; // The duration of the character's attack
     public bool isAttacking; // A boolean to check if the character is currently attacking
+    //UI elements to update when class is selected
+    public Text[] pauseTexts = new Text[9];
+    public Image classSprite;
 
     [Header("Timers")]
     public float attackTimer; // A timer to when the character is no longer attacking
@@ -41,7 +46,7 @@ public class CharacterStatistics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (statSelect == null) statSelect = GameObject.Find("GameManager").GetComponent<StatsDisplay>();
         playerMovement = GetComponent<PlayerMovement>(); // Assign a reference to the PlayerMovement component
     }
 
@@ -153,7 +158,7 @@ public class CharacterStatistics : MonoBehaviour
         if (isPlayer && collision.gameObject.tag == "Enemy")
         {
             int atkDmg = damage; // Initial attack damage value
-            float critRate = Mathf.RoundToInt(Random.Range(1, 101 - critChance)); // Generate a random number using critChance
+            float critRate = Mathf.RoundToInt(UnityEngine.Random.Range(1, 101 - critChance)); // Generate a random number using critChance
             atkDmg -= enemyStats.defense; // Decrease attack damage value by the enemy's defense value
             if (critRate == 1) // If randomly generated value for critRate was correct
                 atkDmg *= crit; // Multiply damage value by crit power
@@ -200,8 +205,21 @@ public class CharacterStatistics : MonoBehaviour
             moveSpeed = stats.moveSpeed;
             rollSpeed = stats.rollSpeed;
             firstPlay = false;
-
+            UpdateUI();
         }
        //Do something else?
+    }
+    public void UpdateUI()
+    {
+        pauseTexts[0].text = stats.playerClass;
+        pauseTexts[1].text = "Damage:" + Environment.NewLine + stats.damage.ToString();
+        pauseTexts[2].text = "Critical:" + Environment.NewLine + stats.crit.ToString();
+        pauseTexts[3].text = "Immunity:" + Environment.NewLine + stats.immunity.ToString();
+        pauseTexts[4].text = "Roll Speed:" + Environment.NewLine + stats.rollSpeed.ToString();
+        pauseTexts[5].text = "Max Health:" + Environment.NewLine + stats.maxHealth.ToString();
+        pauseTexts[6].text = "Defense:" + Environment.NewLine + stats.defense.ToString();
+        pauseTexts[7].text = "Critical %:" + Environment.NewLine + stats.critChance.ToString();
+        pauseTexts[8].text = "Move Speed:" + Environment.NewLine + stats.moveSpeed.ToString();
+        classSprite.sprite = stats.characterSprite;
     }
 }

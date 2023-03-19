@@ -83,15 +83,17 @@ public class Enemy : MonoBehaviour
         {
             target = null;
             ChangeAnimationState(ENEMY_IDLE);
+            GameManager.state = GameManager.GameState.PostGame;
+            GameManager.ChangeState();
         }
         #endregion
 
-        Attack();
+        if (GameManager.state == GameManager.GameState.InGame) Attack();
     }
 
     private void FixedUpdate()
     {
-        if(!stats.isFainted)
+        if(!stats.isFainted && GameManager.state == GameManager.GameState.InGame)
             Movement();
     }
 

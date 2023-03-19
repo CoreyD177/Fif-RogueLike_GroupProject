@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject walkTowards; // A game object used to determine the player's movement direction
     [SerializeField] float rollDuration = 0.5f; // The duration a roll is active
     [SerializeField] float rollCooldown = 2; // The cooldown needed before another roll
+    //Fields for UI to update current stats
+    public Text hudText;
+    public Text pauseHPText;
 
     // Start is called before the first frame update
     void Start()
@@ -47,18 +52,19 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + UnityEngine.Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
     }
 
     // Update is called once per frame
     void Update()
     {
         // If player is not fainted
-        if (!stats.isFainted)
+        if (!stats.isFainted && (GameManager.state == GameManager.GameState.InGame || GameManager.state == GameManager.GameState.Safe))
         {
             Inputs(); // Check for input
             Timers(); // Update timers
             Animations(); // Update animations
+            UpdateHealth();
         }
 
         if(walkTowards.transform.localPosition != Vector3.zero)
@@ -79,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // If player is not fainted
-        if (!stats.isFainted)
+        if (!stats.isFainted && (GameManager.state == GameManager.GameState.InGame || GameManager.state == GameManager.GameState.Safe))
             Movement(); // Move the player based on input
     }
 
@@ -136,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
         //Allow user to pause game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.currentState = GameManager.state;
             GameManager.state = GameManager.GameState.Paused;
             GameManager.ChangeState();
         }
@@ -260,6 +267,11 @@ public class PlayerMovement : MonoBehaviour
         animator.Play(newState);
         currentState = newState;
     }
+    public void UpdateHealth()
+    {
+        hudText.text = "HP: " + stats.health + "/" + stats.maxHealth;
+        pauseHPText.text = "HP:" + Environment.NewLine + stats.health;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //If we enter the camera triggers move the camera the desired amount based of the amount given by the name of the object we triggered, making sure to use the right axis for the right part of room
@@ -269,6 +281,7 @@ public class PlayerMovement : MonoBehaviour
             if (collision.transform.name == "-39" || collision.transform.name == "39") Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);  
             //y axis
             else Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
+            
         }
         //else if we enter a room trigger
         else if (collision.transform.CompareTag("RoomTrigger"))
@@ -285,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (room.transform.position == Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f)) matchFound = true;
                 }
-                string roomNumber = "Rooms/" + Random.Range(0, 6).ToString();
+                string roomNumber = "Rooms/" + UnityEngine.Random.Range(0, 6).ToString();
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras X position to get location of new room
                 if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
             }
@@ -299,12 +312,12 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (room.transform.position == Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f)) matchFound = true;
                 }
-                string roomNumber = "Rooms/" + Random.Range(0, 6).ToString();
-                Debug.Log(roomNumber);
+                string roomNumber = "Rooms/" + UnityEngine.Random.Range(0, 6).ToString();
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
                 if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
             }
         }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -313,12 +326,20 @@ public class PlayerMovement : MonoBehaviour
         {
             collision.transform.parent.parent.GetChild(1).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);
+            //Change the game state between safe and ingame depending on what state we are in when we trigger the camera movement
+            if (GameManager.state == GameManager.GameState.Safe) GameManager.state = GameManager.GameState.InGame;
+            else GameManager.state = GameManager.GameState.Safe;
+            GameManager.ChangeState();
         }
         //Else if we exit a room trigger disable the room triggers and enable the camera triggers. Set dash to 3 so we zoom through path between rooms.
         else if (collision.transform.CompareTag("RoomTrigger"))
         {
             collision.transform.parent.parent.GetChild(0).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);
+            //Change the game state between safe and ingame depending on what state we are in when we trigger the camera movement
+            if (GameManager.state == GameManager.GameState.Safe) GameManager.state = GameManager.GameState.InGame;
+            else GameManager.state = GameManager.GameState.Safe;
+            GameManager.ChangeState();
         }
     }
 }

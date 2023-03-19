@@ -12,32 +12,43 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         InGame,
+        Safe,
         Paused,
+        LevelEnd,
         PostGame
     }
     //A reference to the current state we are in so we can change game options accordingly
     public static GameState state;
+    //A reference to the state the player was in before pausing
+    public static GameState currentState;
     //[Header("References")]
     //References to the PauseMenu and EndMenu in the scene will actually grab the background elements so we can activate and hide them. Cannot grab inactive elements easily by code.
     public static GameObject pauseMenu;
     public static GameObject endMenu;
+    public static GameObject classMenu;
+    public static GameObject headsUpDisplay;
     #endregion
     #region Setup
     private void Start()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
         //If our references are empty fill them from the scene
-        if ((pauseMenu == null || endMenu == null) && SceneManager.GetActiveScene().buildIndex < 2)
+        if (pauseMenu == null || endMenu == null || classMenu == null || headsUpDisplay == null)
         {
             pauseMenu = GameObject.Find("PauseMenu").transform.GetChild(0).gameObject;
             endMenu = GameObject.Find("EndMenu").transform.GetChild(0).gameObject;
+            classMenu = GameObject.Find("ClassMenu").transform.GetChild(0).gameObject;
+            headsUpDisplay = GameObject.Find("HUD").transform.GetChild(0).gameObject;
         }
         //Set the current state to in game and run the function to change the options
-        state = GameState.InGame;
+        state = GameState.Menu;
         if (SceneManager.GetActiveScene().buildIndex < 2) ChangeState();        
     }
     #endregion
     #region Functions
+    private void Update()
+    {
+        Debug.Log(state);
+    }
     public static void ChangeState()
     {
         //Apply our cursror and menu options based on the state we are in
@@ -48,24 +59,48 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 endMenu.SetActive(false);
                 pauseMenu.SetActive(false);
+                headsUpDisplay.SetActive(false);
+                classMenu.SetActive(true);
                 break; 
             case GameState.InGame:
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 endMenu.SetActive(false);
                 pauseMenu.SetActive(false);
+                headsUpDisplay.SetActive(true);
+                classMenu.SetActive(false);
+                break;
+            case GameState.Safe:
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                endMenu.SetActive(false);
+                pauseMenu.SetActive(false);
+                headsUpDisplay.SetActive(true);
+                classMenu.SetActive(false);
                 break;
             case GameState.Paused:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 endMenu.SetActive(false);
                 pauseMenu.SetActive(true);
+                headsUpDisplay.SetActive(false);
+                classMenu.SetActive(false);
+                break;
+            case GameState.LevelEnd:
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                endMenu.SetActive(false);
+                pauseMenu.SetActive(false);
+                headsUpDisplay.SetActive(false);
+                classMenu.SetActive(false);
                 break;
             case GameState.PostGame:
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 endMenu.SetActive(true);
                 pauseMenu.SetActive(false);
+                headsUpDisplay.SetActive(false);
+                classMenu.SetActive(false);
                 break;
             default:
                 break;
@@ -83,7 +118,13 @@ public class GameManager : MonoBehaviour
     public void UnPause()
     {
         //If we hit the resume button change state to ingame and run function to change options
-        state = GameState.InGame;
+        state = currentState;
+        ChangeState();
+    }
+    public void BeginGame()
+    {
+        //If we hit the start button from the class selection menu change state to safe as we start in a corrider where enemies can't get us
+        state = GameState.Safe;
         ChangeState();
     }
     #endregion
