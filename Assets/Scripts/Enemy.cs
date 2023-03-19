@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
             ChangeAnimationState(ENEMY_FAINT);
-            transform.GetComponent<AudioSource>().Play();
+            //transform.GetComponent<AudioSource>().Play();
         }
         #endregion
 
