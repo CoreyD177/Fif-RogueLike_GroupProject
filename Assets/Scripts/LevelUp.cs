@@ -34,6 +34,15 @@ public class LevelUp : MonoBehaviour
     [SerializeField] TextMeshProUGUI lutImmunity;
     [SerializeField] TextMeshProUGUI lutMaxMoveSpeed;
     [SerializeField] TextMeshProUGUI lutRollSpeed;
+    // Given random stats
+    [SerializeField] float gDamage;
+    [SerializeField] float gMaxHealth;
+    [SerializeField] float gDefense;
+    [SerializeField] float gCrit;
+    [SerializeField] float gCritChance;
+    [SerializeField] float gImmunity;
+    [SerializeField] float gMaxMoveSpeed;
+    [SerializeField] float gRollSpeed;
 
     [Header("EndResult")]
     // Stat || (This is the combination of the players initial stats + numbers to increase by)
@@ -55,9 +64,20 @@ public class LevelUp : MonoBehaviour
     [SerializeField] TextMeshProUGUI ertMaxMoveSpeed;
     [SerializeField] TextMeshProUGUI ertRollSpeed;
 
+    [Header("Buttons")]
+    [SerializeField] GameObject bDamage;
+    [SerializeField] GameObject bMaxHealth;
+    [SerializeField] GameObject bDefense;
+    [SerializeField] GameObject bCrit;
+    [SerializeField] GameObject bCritChance;
+    [SerializeField] GameObject bImmunity;
+    [SerializeField] GameObject bMaxMoveSpeed;
+    [SerializeField] GameObject bRollSpeed;
+
 
     [Header("Misc")]
     [SerializeField] int points;
+    [SerializeField] TextMeshProUGUI pointsText;
     [SerializeField] Toggle heal;
     CharacterStatistics player;
 
@@ -75,6 +95,9 @@ public class LevelUp : MonoBehaviour
         lucMaxMoveSpeed = player.maxMoveSpeed;
         lucRollSpeed = player.rollSpeed;
 
+        points = player.points;
+        player.points = 0;
+
         // Random stat increases
         lufDamage = Mathf.RoundToInt(Random.Range(1, 5));
         lufMaxHealth = Mathf.RoundToInt(Random.Range(1, 5));
@@ -85,12 +108,23 @@ public class LevelUp : MonoBehaviour
         lufImmunity /= 10;
         lufMaxMoveSpeed = Mathf.RoundToInt(Random.Range(1, 2));
         lufRollSpeed = Mathf.RoundToInt(Random.Range(1, 2));
+
+        // Remember what the random stat increases were
+        gDamage = lufDamage;
+        gMaxHealth = lufMaxHealth;
+        gDefense = lufDefense;
+        gCrit = lufCrit;
+        gCritChance = lufCritChance;
+        gImmunity = lufImmunity;
+        gMaxMoveSpeed = lufMaxMoveSpeed;
+        gRollSpeed = lufRollSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
         TextUpdate();
+        CanSubtract();
     }
 
     void TextUpdate()
@@ -129,25 +163,179 @@ public class LevelUp : MonoBehaviour
         ertMaxMoveSpeed.text = "Move Speed: " + erfMaxMoveSpeed;
         ertRollSpeed.text = "Roll Distance: " + erfRollSpeed;
         #endregion
+
+        #region Points
+        pointsText.text = "Points: " + points;
+        #endregion
     }
 
-    public void StatChange(string stat, float amount, int pointsRequired)
+    void CanSubtract()
+    {
+        if (lufDamage <= gDamage)
+            bDamage.SetActive(false);
+        else
+            bDamage.SetActive(true);
+        if (lufMaxHealth <= gMaxHealth)
+            bMaxHealth.SetActive(false);
+        else
+            bMaxHealth.SetActive(true);
+        if (lufDefense <= gDefense)
+            bDefense.SetActive(false);
+        else
+            bDefense.SetActive(true);
+        if (lufCrit <= gCrit)
+            bCrit.SetActive(false);
+        else
+            bCrit.SetActive(true);
+        if (lufCritChance <= gCritChance)
+            bCritChance.SetActive(false);
+        else
+            bCritChance.SetActive(true);
+        if (lufImmunity <= gImmunity)
+            bImmunity.SetActive(false);
+        else
+            bImmunity.SetActive(true);
+        if (lufMaxMoveSpeed <= gMaxMoveSpeed)
+            bMaxMoveSpeed.SetActive(false);
+        else
+            bMaxMoveSpeed.SetActive(true);
+        if (lufRollSpeed <= gRollSpeed)
+            bRollSpeed.SetActive(false);
+        else
+            bRollSpeed.SetActive(true);
+    }
+
+    public void AddStatChange(string stat)
+    {
+        if(points > 0)
+        {
+            switch (stat)
+            {
+                case "damage":
+                    lufDamage++;
+                    points--;
+                    break;
+
+                case "maxhealth":
+                    lufMaxHealth++;
+                    points--;
+                    break;
+
+                case "defense":
+                    lufDefense++;
+                    points--;
+                    break;
+
+                case "criticaldamage":
+                    lufCrit++;
+                    points--;
+                    break;
+
+                case "criticalchance":
+                    lufCritChance++;
+                    points--;
+                    break;
+
+                case "immunity":
+                    lufImmunity += 0.1f;
+                    points--;
+                    break;
+
+                case "movespeed":
+                    lufMaxMoveSpeed++;
+                    points--;
+                    break;
+
+                case "rolldistance":
+                    lufRollSpeed++;
+                    points--;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+    
+    public void SubtractStatChange(string stat)
     {
         switch (stat)
         {
             case "damage":
-                lufDamage += amount;
-                points += pointsRequired;
+                if(lufDamage > gDamage)
+                {
+                    lufDamage--;
+                    points++;
+                }
                 break;
 
             case "maxhealth":
-                lufMaxHealth += amount;
-                points += pointsRequired;
+                if (lufMaxHealth > gMaxHealth)
+                {
+                    lufMaxHealth--;
+                    points++;
+                }
+                break;
+
+            case "defense":
+                if (lufDefense > gDefense)
+                {
+                    lufDefense--;
+                    points++;
+                }
+                break;
+
+            case "criticaldamage":
+                if (lufCrit > gCrit)
+                {
+                    lufCrit--;
+                    points++;
+                }
+                break;
+
+            case "criticalchance":
+                if (lufCritChance > gCritChance)
+                {
+                    lufCritChance--;
+                    points++;
+                }
+                break;
+
+            case "immunity":
+                if (lufImmunity > gImmunity)
+                {
+                    lufImmunity -= 0.1f;
+                    points++;
+                }
+                break;
+
+            case "movespeed":
+                if (lufMaxMoveSpeed > gMaxMoveSpeed)
+                {
+                    lufMaxMoveSpeed--;
+                    points++;
+                }
+                break;
+
+            case "rolldistance":
+                if (lufRollSpeed > gRollSpeed)
+                {
+                    lufRollSpeed--;
+                    points++;
+                }
                 break;
 
             default:
                 break;
         }
+    }
+
+    public void Heal()
+    {
+        if (heal.isOn)
+            points--;
+        else
+            points++;
     }
 
     public void Continue()
@@ -168,4 +356,6 @@ public class LevelUp : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+
 }

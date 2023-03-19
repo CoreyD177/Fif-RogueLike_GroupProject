@@ -303,16 +303,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: criticalchance
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1244367852883954927
@@ -572,16 +572,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: maxhealth
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1710890374163494861
@@ -841,16 +841,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: damage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2039232849294362676
@@ -975,16 +975,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: immunity
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2117537291019048990
@@ -1244,16 +1244,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: criticalchance
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2868220005639934758
@@ -1378,16 +1378,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: damage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2872947073177612563
@@ -1512,16 +1512,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: defense
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2947360203243766069
@@ -1968,16 +1968,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: rolldistance
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &4560143351015980090
@@ -2543,16 +2543,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: rolldistance
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5204304078153050417
@@ -3082,16 +3082,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: maxhealth
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5524064918974930896
@@ -3216,16 +3216,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: movespeed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5972289117024192804
@@ -3531,16 +3531,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: movespeed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6559663203346536879
@@ -3665,16 +3665,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: defense
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6699160866157915483
@@ -3799,16 +3799,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: immunity
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6981021570018123911
@@ -4042,9 +4042,9 @@ MonoBehaviour:
   m_fontSize: 13.5
   m_fontSizeBase: 13.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 13.5
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
@@ -4598,7 +4598,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200.08003}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 269.0554, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6981021570458262544
 CanvasRenderer:
@@ -4928,9 +4928,9 @@ MonoBehaviour:
   m_fontSize: 13.5
   m_fontSizeBase: 13.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 13.5
   m_fontStyle: 0
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
@@ -6027,6 +6027,14 @@ MonoBehaviour:
   lutImmunity: {fileID: 6981021570538858971}
   lutMaxMoveSpeed: {fileID: 6981021571729237682}
   lutRollSpeed: {fileID: 6981021570346185631}
+  gDamage: 0
+  gMaxHealth: 0
+  gDefense: 0
+  gCrit: 0
+  gCritChance: 0
+  gImmunity: 0
+  gMaxMoveSpeed: 0
+  gRollSpeed: 0
   erfDamage: 0
   erfMaxHealth: 0
   erfDefense: 0
@@ -6043,7 +6051,16 @@ MonoBehaviour:
   ertImmunity: {fileID: 6981021570183808455}
   ertMaxMoveSpeed: {fileID: 6981021570583481828}
   ertRollSpeed: {fileID: 6981021570018123909}
+  bDamage: {fileID: 2868220005639934758}
+  bMaxHealth: {fileID: 1443373165505767218}
+  bDefense: {fileID: 2872947073177612563}
+  bCrit: {fileID: 7562057349014652285}
+  bCritChance: {fileID: 475454790423695381}
+  bImmunity: {fileID: 2039232849294362676}
+  bMaxMoveSpeed: {fileID: 5524064918974930896}
+  bRollSpeed: {fileID: 5082418853790849439}
   points: 0
+  pointsText: {fileID: 6981021570458262547}
   heal: {fileID: 6981021571945296606}
 --- !u!1 &6981021571181736126
 GameObject:
@@ -7233,7 +7250,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &6981021571998618413
 GameObject:
@@ -7568,16 +7597,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: SubtractStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: criticaldamage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &7765669553586326926
@@ -7972,16 +8001,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6981021571180611629}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6802767560285666573}
+        m_TargetAssemblyTypeName: LevelUp, Assembly-CSharp
+        m_MethodName: AddStatChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: criticaldamage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8372178689357886526

@@ -3834,7 +3834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c999a9b3eac011c49b8b9e092f68d0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
+  points: 100
   health: 5
   maxHealth: 10
   defense: 2
