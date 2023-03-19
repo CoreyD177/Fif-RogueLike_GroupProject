@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine; //Connect to Unity Engine
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI; //Enable changing of canvas UI elements
 
@@ -45,10 +46,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region Functions
-    private void Update()
-    {
-        Debug.Log(state);
-    }
     public static void ChangeState()
     {
         //Apply our cursror and menu options based on the state we are in
@@ -126,6 +123,10 @@ public class GameManager : MonoBehaviour
         //If we hit the start button from the class selection menu change state to safe as we start in a corrider where enemies can't get us
         state = GameState.Safe;
         ChangeState();
+    }
+    public void DeselectButton(EventSystem events)
+    {
+        events.SetSelectedGameObject(null);
     }
     #endregion
 

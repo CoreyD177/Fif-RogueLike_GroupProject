@@ -70,8 +70,11 @@ public class PlayerMovement : MonoBehaviour
         if(walkTowards.transform.localPosition != Vector3.zero)
             stats.hitBox.transform.localPosition = walkTowards.transform.localPosition; // Always align player attack box infront of them
 
-        if(stats.isFainted)
+        if (stats.isFainted)
+        {
             ChangeAnimationState("Player_Faint");
+            transform.GetComponent<AudioSource>().Play();
+        }
 
         #region isLeft
         // Flip the sprite horizontally if the player is facing left
@@ -272,24 +275,30 @@ public class PlayerMovement : MonoBehaviour
         hudText.text = "HP: " + stats.health + "/" + stats.maxHealth;
         pauseHPText.text = "HP:" + Environment.NewLine + stats.health;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        //If we enter the camera triggers move the camera the desired amount based of the amount given by the name of the object we triggered, making sure to use the right axis for the right part of room
+        //if we exit camera trigger disable the camera triggers for that room and enable the room triggers. Set dash to 1 as we are in a room
         if (collision.transform.CompareTag("CamTrigger"))
         {
-            //X axis triggers have 39 or -39 for a name
-            if (collision.transform.name == "-39" || collision.transform.name == "39") Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);  
+            //X axis triggers have 39 or -39 for a name. Also make sure camera is on correct side of player or camera will transition to a room the play is not in
+            if ((collision.transform.name == "-39" && transform.position.x < Camera.main.transform.position.x) || (collision.transform.name == "39" && transform.position.x > Camera.main.transform.position.x)) Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);
             //y axis
-            else Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
-            
+            else if ((collision.transform.name == "-22" && transform.position.y < Camera.main.transform.position.y) || (collision.transform.name == "22" && transform.position.y > Camera.main.transform.position.y)) Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
+            //Disable camera triggers and enable rom triggers
+            collision.transform.parent.parent.GetChild(1).gameObject.SetActive(true);
+            collision.transform.parent.gameObject.SetActive(false);
+            //Change the game state between safe and ingame depending on what state we are in when we trigger the camera movement
+            if (GameManager.state == GameManager.GameState.Safe) GameManager.state = GameManager.GameState.InGame;
+            else GameManager.state = GameManager.GameState.Safe;
+            GameManager.ChangeState();
         }
-        //else if we enter a room trigger
+        //Else if we exit a room trigger disable the room triggers and enable the camera triggers. Set dash to 3 so we zoom through path between rooms.
         else if (collision.transform.CompareTag("RoomTrigger"))
         {
             //Set a bool to determine if we have a room already to false
             bool matchFound = false;
-            //If collided trigger has 39 or -39 for a name we are using x axis
-            if (collision.transform.name == "-39" || collision.transform.name == "39")
+            //If collided trigger has 39 or -39 for a name we are using x axis. Also make sure camera is on correct side of player or camera will transition to a room the play is not in
+            if ((collision.transform.name == "-39" && transform.position.x < Camera.main.transform.position.x) || (collision.transform.name == "39" && transform.position.x > Camera.main.transform.position.x))
             {
                 //move the camera to the location of the next room
                 Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);
@@ -303,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
                 if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(float.Parse(collision.transform.name), 0f, 10f), Quaternion.identity));
             }
             //Else we are using y axis
-            else 
+            else if ((collision.transform.name == "-22" && transform.position.y < Camera.main.transform.position.y) || (collision.transform.name == "22" && transform.position.y > Camera.main.transform.position.y))
             {
                 //Move the camera to the location of new room
                 Camera.main.transform.position += new Vector3(0f, float.Parse(collision.transform.name), 0f);
@@ -314,26 +323,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 string roomNumber = "Rooms/" + UnityEngine.Random.Range(0, 6).ToString();
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
-                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity)); 
+                if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity));
             }
-        }
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //if we exit camera trigger disable the camera triggers for that room and enable the room triggers. Set dash to 1 as we are in a room
-        if (collision.transform.CompareTag("CamTrigger"))
-        {
-            collision.transform.parent.parent.GetChild(1).gameObject.SetActive(true);
-            collision.transform.parent.gameObject.SetActive(false);
-            //Change the game state between safe and ingame depending on what state we are in when we trigger the camera movement
-            if (GameManager.state == GameManager.GameState.Safe) GameManager.state = GameManager.GameState.InGame;
-            else GameManager.state = GameManager.GameState.Safe;
-            GameManager.ChangeState();
-        }
-        //Else if we exit a room trigger disable the room triggers and enable the camera triggers. Set dash to 3 so we zoom through path between rooms.
-        else if (collision.transform.CompareTag("RoomTrigger"))
-        {
+            //Disable roomtriggers and enable camera triggers
             collision.transform.parent.parent.GetChild(0).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);
             //Change the game state between safe and ingame depending on what state we are in when we trigger the camera movement

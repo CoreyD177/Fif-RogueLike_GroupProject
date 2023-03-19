@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
             ChangeAnimationState(ENEMY_FAINT);
+            transform.GetComponent<AudioSource>().Play();
         }
         #endregion
 
@@ -93,7 +94,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!stats.isFainted && GameManager.state == GameManager.GameState.InGame)
+        if(!stats.isFainted && GameManager.state == GameManager.GameState.InGame && Vector3.Distance(transform.parent.position, target.transform.position) < 22.5f)
             Movement();
     }
 
