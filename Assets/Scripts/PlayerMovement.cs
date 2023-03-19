@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Timers")]
     float rollCooldownTimer; // Timer for the roll cooldown
     float rollDurationTimer; // Timer for the roll duration
+    public float immunityTimer;
 
     [Header("Animations")]
     const string PLAYER_ATTACKDOWN = "Player_AttackDown"; // Stores the "Player_AttackDown" animation
@@ -194,6 +195,9 @@ public class PlayerMovement : MonoBehaviour
         // Check if rollDurationTimer has expired
         if (rollDurationTimer <= 0)
             isRolling = false; // Set isRolling to false
+
+        if (immunityTimer > 0)
+            immunityTimer -= Time.deltaTime;
     }
 
     void Animations()
