@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public List<GameObject> roomList = new List<GameObject>();
     CharacterStatistics stats; // The player's CharacterStatistics component
     Rigidbody2D rb; // The player's Rigidbody2D component
-    GameManager gameManager; // The GameManager instance
+    public GameManager gameManager; // The GameManager instance
     AudioSource audioSource;
     [SerializeField] GameObject walkTowards; // A game object used to determine the player's movement direction
     [SerializeField] float rollDuration = 0.5f; // The duration a roll is active
@@ -53,9 +53,10 @@ public class PlayerMovement : MonoBehaviour
     {
         stats = GetComponent<CharacterStatistics>(); // Get the CharacterStatistics component
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
+        if (gameManager == null) GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>(); // Get the Animator component
         audioSource = GetComponent<AudioSource>();
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 1) roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + UnityEngine.Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+        roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + UnityEngine.Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
     }
 
     // Update is called once per frame
@@ -286,6 +287,8 @@ public class PlayerMovement : MonoBehaviour
         //if we exit camera trigger disable the camera triggers for that room and enable the room triggers. Set dash to 1 as we are in a room
         if (collision.transform.CompareTag("CamTrigger"))
         {
+            //Disable the original collider that stops player moving south before a room is there
+            if (roomList.Count < 2) gameManager.GetComponent<BoxCollider2D>().enabled = false;
             //X axis triggers have 39 or -39 for a name. Also make sure camera is on correct side of player or camera will transition to a room the play is not in
             if ((collision.transform.name == "-39" && transform.position.x < Camera.main.transform.position.x) || (collision.transform.name == "39" && transform.position.x > Camera.main.transform.position.x)) Camera.main.transform.position += new Vector3(float.Parse(collision.transform.name), 0f, 0f);
             //y axis
@@ -338,6 +341,24 @@ public class PlayerMovement : MonoBehaviour
             if (GameManager.state == GameManager.GameState.Safe) GameManager.state = GameManager.GameState.InGame;
             else GameManager.state = GameManager.GameState.Safe;
             GameManager.ChangeState();
+            Debug.Log("Current Room Count is " + roomList.Count);
+            //If we have spawned too many rooms the level is over
+            if (roomList.Count == gameManager.roomLimit + 2)
+            {
+                //Change state
+                GameManager.state = GameManager.GameState.LevelEnd;
+                GameManager.ChangeState();
+                //Delete all rooms, move player back to spawn position and spawn new room
+                foreach (GameObject room in roomList)
+                {
+                    Destroy(room.gameObject);
+                }
+                roomList.Clear();
+                Debug.Log(roomList.Count);
+                Camera.main.transform.position = new Vector3(0f, -22f, -10f);
+                transform.position = new Vector3(0f, -20f, 0f);
+                roomList.Add(Instantiate(Resources.Load<GameObject>("Rooms/" + UnityEngine.Random.Range(0, 6)), new Vector3(0f, 0f, 0f), Quaternion.identity));
+            }
         }
     }
 }

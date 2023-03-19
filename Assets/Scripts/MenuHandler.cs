@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement; //Allow changing of scenes
 public class MenuHandler : MonoBehaviour
 {
     #region Instance
+    //Reference to this script instance
     public static MenuHandler instance;
 
     public void Awake()

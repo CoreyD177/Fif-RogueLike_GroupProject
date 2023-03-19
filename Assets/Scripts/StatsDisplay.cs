@@ -45,11 +45,6 @@ public class StatsDisplay : MonoBehaviour
         playerHUDSprite.sprite = playerSprite.sprite;
         playerHUDHealth.text = "HP " + stats.maxHealth + "/" + stats.maxHealth;
     }
-
-    
-    
-
-
     #region Testing
     public void RandomSelection()
     {

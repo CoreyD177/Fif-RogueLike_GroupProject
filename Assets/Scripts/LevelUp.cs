@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
@@ -354,7 +352,7 @@ public class LevelUp : MonoBehaviour
             player.health = player.maxHealth;
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 
