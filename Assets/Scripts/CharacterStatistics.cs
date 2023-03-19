@@ -170,11 +170,19 @@ public class CharacterStatistics : MonoBehaviour
             int atkDmg = damage; // Initial attack damage value
             atkDmg -= enemyStats.defense; // Decrease attack damage value by the player's defense value
             if (atkDmg < 1) // If the damage value is lower than 1
-                atkDmg = 1; // Set damage to 1
-            if (collision.gameObject.GetComponent<PlayerMovement>().isRolling)
             {
-                atkDmg = 0;
-                temp = "miss";
+                atkDmg = 1; // Set damage to 1
+
+                if (enemyStats.GetComponent<PlayerMovement>().isRolling || enemyStats.GetComponent<PlayerMovement>().immunityTimer > 0)
+                {
+                    atkDmg = 0;
+                    temp = "miss";
+                }
+            }
+            if (atkDmg > 0)
+            {
+                enemyStats.GetComponent<PlayerMovement>().immunityTimer = enemyStats.immunity;
+                temp = "hit";
             }
             enemyStats.health -= atkDmg; // Decrease player's health value by the final damage value
             StartCoroutine(SlowMotion());
