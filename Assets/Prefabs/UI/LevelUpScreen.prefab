@@ -6059,7 +6059,7 @@ MonoBehaviour:
   bImmunity: {fileID: 2039232849294362676}
   bMaxMoveSpeed: {fileID: 5524064918974930896}
   bRollSpeed: {fileID: 5082418853790849439}
-  points: 0
+  points: 10
   pointsText: {fileID: 6981021570458262547}
   heal: {fileID: 6981021571945296606}
 --- !u!1 &6981021571181736126
