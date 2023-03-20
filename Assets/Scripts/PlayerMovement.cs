@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         if (stats.isFainted)
         {
             ChangeAnimationState("Player_Faint");
-            audioSource.Play();
+            //audioSource.Play();
         }
 
         #region isLeft
@@ -334,6 +334,8 @@ public class PlayerMovement : MonoBehaviour
                 //If no match found instantiate a new room using name of triggered object as amount to add to cameras y position to get location of new room
                 if (!matchFound) roomList.Add(Instantiate(Resources.Load<GameObject>(roomNumber), Camera.main.transform.position + new Vector3(0f, float.Parse(collision.transform.name), 10f), Quaternion.identity));
             }
+            //Add points for each room cleared
+            stats.points++;
             //Disable roomtriggers and enable camera triggers
             collision.transform.parent.parent.GetChild(0).gameObject.SetActive(true);
             collision.transform.parent.gameObject.SetActive(false);

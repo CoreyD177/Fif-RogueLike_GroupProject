@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     bool isLeft;
     CharacterStatistics stats;
     Animator animator;
+    bool isSleepingTheDeepSleep = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +75,11 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
             ChangeAnimationState(ENEMY_FAINT);
-            //transform.GetComponent<AudioSource>().Play();
+            if (!isSleepingTheDeepSleep)
+            {
+                transform.GetComponent<AudioSource>().Play();
+                isSleepingTheDeepSleep = true;
+            }
         }
         #endregion
 
